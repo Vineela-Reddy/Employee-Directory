@@ -5,7 +5,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
   standalone: true
 })
 export class HighlightDirective {
-  @Input('appHighlight') age!: number;
+  @Input() age!: number;
 
   constructor(private el: ElementRef) {}
   ngOnInit():void{

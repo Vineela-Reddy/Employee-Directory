@@ -20,7 +20,7 @@
       <tr *ngFor="let employee of filteredEmployees" >
         <td>{{ employee.name }}</td>
         <td>{{ employee.id }}</td>
-        <td [appHighlight]="employee.age">{{ employee.age }}</td>
+        <td appHighlight [age]="employee.age">{{ employee.age }}</td>
         <td>{{ employee.phone }}</td>
         <td>{{ employee.address }}</td>
       </tr>
