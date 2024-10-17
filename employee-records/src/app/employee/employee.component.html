@@ -1,3 +1,11 @@
+<div>
+  <input 
+    type="text" 
+    [(ngModel)]="searchTerm" 
+    placeholder="Search " 
+    style="margin-bottom: 20px;"
+  />
+</div>
 <table>
     <thead>
       <tr>
@@ -9,11 +17,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of employees" 
-          [ngClass]="{'highlight-orange': employee.age < 28, 'highlight-yellow': employee.age > 42}">
+      <tr *ngFor="let employee of filteredEmployees" >
         <td>{{ employee.name }}</td>
         <td>{{ employee.id }}</td>
-        <td>{{ employee.age }}</td>
+        <td [appHighlight]="employee.age">{{ employee.age }}</td>
+
         <td>{{ employee.phone }}</td>
         <td>{{ employee.address }}</td>
       </tr>
