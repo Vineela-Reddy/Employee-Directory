@@ -1,21 +1,18 @@
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]',
   standalone: true
 })
-export class HighlightDirective implements OnChanges {
+export class HighlightDirective {
   @Input('appHighlight') age!: number;
 
   constructor(private el: ElementRef) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['age']) {
-      this.highlight();
-    }
+  ngOnInit():void{
+    this.highlight();
   }
 
-  private highlight(): void {
+   highlight(): void {
     if (this.age < 28) {
       this.el.nativeElement.style.backgroundColor = 'orange';
     } else if (this.age > 42) {
