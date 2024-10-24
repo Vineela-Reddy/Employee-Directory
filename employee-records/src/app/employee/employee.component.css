@@ -1,24 +1,65 @@
-.highlight-orange {
-    background-color: orange;
-  }
-  
-  .highlight-yellow {
-    background-color: yellow;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.search-input {
+  margin-bottom: 20px;
+  width: 50%;
+  padding: 10px;
+  font-size:1.5rem;
+  border:1px solid #007bff ;
+  color: #007bff;
+}
+
+.employee-form input {
+  margin:10px;
+  padding: 5px;
+  border: 1px solid #007bff;
  
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+ .pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+} 
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 5px;
+}
+
+/* .pagination a.active {
+  background-color: #007bff;
+  color: white;
+} */
+
+/* .pagination a.disabled {
+  color: #ccc;
+  pointer-events: none;
+} */
+
+/* .pagination li:hover:not(.disabled) a {
+  background-color: #e9ecef;
+} */

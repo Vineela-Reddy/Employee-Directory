@@ -1,29 +1,101 @@
 <div>
-  <input 
-    type="text" 
-    [(ngModel)]="searchTerm" 
-    placeholder="Search " 
-    style="margin-bottom: 20px;"
+  <input
+    class="search-input "
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Search "
+    style="margin-bottom: 20px"
   />
 </div>
+
+<div class="employee-form">
+  <h3>{{ isEditing ? "Edit Employee" : "Add New Employee" }}</h3>
+  <input
+    type="text"
+    [(ngModel)]="newEmployee.name"
+    placeholder="Name"
+    required
+  />
+  <input
+    type="number"
+    [(ngModel)]="newEmployee.age"
+    placeholder="Age"
+    required
+  />
+  <input
+    type="text"
+    [(ngModel)]="newEmployee.phone"
+    placeholder="Phone"
+    required
+  />
+  <input
+    type="text"
+    [(ngModel)]="newEmployee.address"
+    placeholder="Address"
+    required
+  />
+  <button class="add-employee" [appEmployeeAddRemove]="this">
+    {{ isEditing ? "Update Employee" : "Add Employee" }}
+  </button>
+</div>
+
 <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>ID</th>
-        <th>Age</th>
-        <th>Phone</th>
-        <th>Address</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let employee of filteredEmployees" >
-        <td>{{ employee.name }}</td>
-        <td>{{ employee.id }}</td>
-        <td appHighlight [age]="employee.age">{{ employee.age }}</td>
-        <td>{{ employee.phone }}</td>
-        <td>{{ employee.address }}</td>
-      </tr>
-    </tbody>
-  </table>
-  
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let employee of filteredEmployees
+          | slice
+            : (currentPage - 1) * itemsPerPage
+            : currentPage * itemsPerPage
+      "
+    >
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td appHighlight [age]="employee.age">{{ employee.age }}</td>
+      <td>{{ employee.phone }}</td>
+      <td>{{ employee.address }}</td>
+      <td>
+        <button
+          class="delete-employee"
+          
+          (click)="deleteEmployee(employee.id)"
+        >
+          Delete
+        </button>
+        <button (click)="EditEmployee(employee.id)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul class="pagination">
+  <li [class.disabled]="currentPage === 1">
+    <a (click)="goToFirstPage()">First</a>
+  </li>
+  <li [class.disabled]="currentPage === 1">
+    <a (click)="goToPreviousPage()">Prev</a>
+  </li>
+
+  <li *ngFor="let page of visiblePages">
+    <a (click)="goToPage(page)" [class.active]="currentPage === page">{{
+      page
+    }}</a>
+  </li>
+
+  <li [class.disabled]="currentPage === totalPages">
+    <a (click)="goToNextPage()">Next</a>
+  </li>
+  <li [class.disabled]="currentPage === totalPages">
+    <a (click)="goToLastPage()">Last</a>
+  </li>
+</ul>
